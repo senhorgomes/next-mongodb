@@ -1,9 +1,10 @@
 import Image from "next/image";
+import TicketCard from "./(components)/TicketCard";
 
-export default function Home() {
+export default function Dashboard() {
   return (
-    <dashboard>
-      dashboard
-      </dashboard>
+    <div>
+      <TicketCard/>
+    </div>
   );
 }
