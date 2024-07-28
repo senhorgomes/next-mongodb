@@ -11,6 +11,8 @@ const TicketCard = () => {
             <DeleteBlock/>
         </div>
       </div>
+      <h4>Ticket Title</h4>
+      <hr className="h-px border-0 bg-page mb-2"/>
       <ProgressDisplay/>
       <StatusDisplay/>
     </div>
