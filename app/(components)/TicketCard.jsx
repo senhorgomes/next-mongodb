@@ -4,13 +4,13 @@ import ProgressDisplay from "./ProgressDisplay"
 import StatusDisplay from "./StatusDisplay"
 const TicketCard = () => {
   return (
-    <div className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
-      <div class="flex mb-3">
+    <section className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
+      <header class="flex mb-3">
         <PriorityDisplay/>
         <div className="ml-auto">
             <DeleteBlock/>
         </div>
-      </div>
+      </header>
       <h4>Ticket Title</h4>
       <hr className="h-px border-0 bg-page mb-2"/>
       <p className="whitespace-pre-wrap">This is a ticket description</p>
@@ -26,7 +26,7 @@ const TicketCard = () => {
             <StatusDisplay/>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

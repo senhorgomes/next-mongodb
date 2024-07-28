@@ -4,6 +4,9 @@ export default function Dashboard() {
   return (
     <div>
       <TicketCard/>
+      <TicketCard/>
+      <TicketCard/>
+      <TicketCard/>
     </div>
   );
 }
