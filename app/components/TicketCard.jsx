@@ -2,7 +2,7 @@ import DeleteBlock from "./DeleteBlock"
 import PriorityDisplay from "./PriorityDisplay"
 import ProgressDisplay from "./ProgressDisplay"
 import StatusDisplay from "./StatusDisplay"
-const TicketCard = () => {
+const TicketCard = ({title, description, progress, status}) => {
   return (
     <article className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
       <header className="flex mb-3">
@@ -11,9 +11,9 @@ const TicketCard = () => {
             <DeleteBlock/>
         </div>
       </header>
-      <h4>Ticket Title</h4>
+      <h4>{title}</h4>
       <hr className="h-px border-0 bg-page mb-2"/>
-      <p className="whitespace-pre-wrap">This is a ticket description</p>
+      <p className="whitespace-pre-wrap">{description}</p>
       <div className="flex-grow">
 
       </div>
@@ -23,7 +23,7 @@ const TicketCard = () => {
             <ProgressDisplay/>
         </div>
         <div className="ml-auto flex items-end">
-            <StatusDisplay/>
+            <StatusDisplay status={status}/>
         </div>
       </div>
     </article>

@@ -27,10 +27,7 @@ console.log(allTickets)
   return (
     <main className="p-5">
       <section className="lg:grid grid-cols-2 xl:grid-cols-4">
-        <TicketCard/>
-        <TicketCard/>
-        <TicketCard/>
-        <TicketCard/>
+        {allTickets.map((singleTicketData)=> <TicketCard {...singleTicketData}/>)}
       </section>
     </main>
   );
