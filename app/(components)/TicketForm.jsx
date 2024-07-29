@@ -12,20 +12,24 @@ const TicketForm = () => {
         category: "Hardware Problem",
         priority: 1,
         progress: 0,
-        status: "not started",
-        active: true,
+        status: "Pending",
     };
 
     const [formData, setFormData] = useState(baseTicket);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(e.target.value)
         setFormData((prev) => ({ ...prev, [name]: value }))
+        console.log(formData)
     }
 
+    const handleSubmit = () => {
+        // Submit Data
+    }
     return (
         <div className="flex justify-center">
-            <form>
+            <form className="flex flex-col gap-3 w-1/2" method="POST" onSubmit={handleSubmit}>
                 <h3>Create Your Ticket</h3>
                 <label>Title</label>
                 <input
@@ -34,7 +38,7 @@ const TicketForm = () => {
                     type="text"
                     value={formData.title}
                     onChange={handleChange}
-                    required="true"
+                    required={true}
                 />
                 <label>Description</label>
                 <input
@@ -43,7 +47,7 @@ const TicketForm = () => {
                     type="text"
                     value={formData.description}
                     onChange={handleChange}
-                    required="true"
+                    required={true}
                 />
                 <label>Category</label>
                 <input
@@ -52,8 +56,19 @@ const TicketForm = () => {
                     type="text"
                     value={formData.category}
                     onChange={handleChange}
-                    required="true"
+                    required={true}
                 />
+                <label>Status</label>
+                <select
+                    id="status"
+                    name="status"
+                    onChange={handleChange}
+                    required={true}
+                >
+                    <option defaultValue="true" value="Pending">Pending</option>
+                    <option value="Started">Started</option>
+                    <option value="Completed">Completed</option>
+                    </select>
             </form>
 
         </div>
