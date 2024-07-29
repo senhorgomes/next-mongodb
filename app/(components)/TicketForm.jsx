@@ -36,6 +36,24 @@ const TicketForm = () => {
                     onChange={handleChange}
                     required="true"
                 />
+                <label>Description</label>
+                <input
+                    id="description"
+                    name="description"
+                    type="text"
+                    value={formData.description}
+                    onChange={handleChange}
+                    required="true"
+                />
+                <label>Category</label>
+                <input
+                    id="category"
+                    name="category"
+                    type="text"
+                    value={formData.category}
+                    onChange={handleChange}
+                    required="true"
+                />
             </form>
 
         </div>

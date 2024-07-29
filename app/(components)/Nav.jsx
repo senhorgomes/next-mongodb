@@ -10,7 +10,7 @@ const Nav = () => {
             <Link href="/">
                 <FontAwesomeIcon icon={faHome} className="icon"/>
             </Link>
-            <Link href="/TicketPage/new">
+            <Link href="/ticket-page/new">
                 <FontAwesomeIcon icon={faTicket} className="icon"/>
             </Link>
         </div>

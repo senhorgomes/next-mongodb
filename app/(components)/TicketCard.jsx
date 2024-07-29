@@ -5,7 +5,7 @@ import StatusDisplay from "./StatusDisplay"
 const TicketCard = () => {
   return (
     <article className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
-      <header class="flex mb-3">
+      <header className="flex mb-3">
         <PriorityDisplay/>
         <div className="ml-auto">
             <DeleteBlock/>
