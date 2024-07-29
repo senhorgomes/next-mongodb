@@ -1,4 +1,4 @@
-import TicketForm from "@/app/(components)/TicketForm"
+import TicketForm from "@/app/components/TicketForm"
 
 const NewTicketPage = () => {
     return (
