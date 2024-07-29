@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 
 const TicketForm = () => {
 
+    const router = useRouter();
+
     const baseTicket = {
         title: "",
         description: "",
@@ -21,7 +23,6 @@ const TicketForm = () => {
         const { name, value } = e.target;
         console.log(e.target.value)
         setFormData((prev) => ({ ...prev, [name]: value }))
-        console.log(formData)
     }
 
     const handleSubmit = async (e) => {
@@ -35,8 +36,7 @@ const TicketForm = () => {
             }
         }
         )
-        console.log(res)
-
+        router.push("/");
     }
     return (
         <div className="flex justify-center">
