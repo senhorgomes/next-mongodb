@@ -32,7 +32,6 @@ export default async function Dashboard() {
     }
     return filteredTickets;
   }, [])
-
   if(!allTickets){
     return (
       <main className="p-5">
@@ -45,9 +44,14 @@ export default async function Dashboard() {
   return (
     <main className="p-5">
       <section className="lg:grid grid-cols-2 xl:grid-cols-4">
-        <h2>Hardware Problems</h2>
-        <h2>Software Problems</h2>
-        <h2>Projects</h2>
+        {/* Hardware problems */}
+        {hardwareProblemTickets.length > 1 && <h2>Hardware Problems</h2>}
+        {hardwareProblemTickets}
+        {/* Software Problems */}
+        {softwareProblemTickets.length > 1 && <h2>Software Problems</h2>}
+        {softwareProblemTickets}
+        {/* Projects */}
+        {projectTickets.length > 1 && <h2>Projects</h2>}
         {projectTickets}
         {/* {allTickets.map((singleTicketData)=> <TicketCard {...singleTicketData}/>)} */}
       </section>
