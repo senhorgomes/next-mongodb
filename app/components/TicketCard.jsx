@@ -20,7 +20,7 @@ const TicketCard = ({title, description, progress, priority, status}) => {
       <div className="flex mt-2">
         <div className="flex flex-col">
             <p className="text-xs my-1">8/31/2024 10:43PM</p>
-            <ProgressDisplay/>
+            <ProgressDisplay progress={progress}/>
         </div>
         <div className="ml-auto flex items-end">
             <StatusDisplay status={status}/>
