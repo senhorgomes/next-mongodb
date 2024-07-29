@@ -3,7 +3,7 @@ import TicketCard from "./components/TicketCard";
 import { faPoo } from "@fortawesome/free-solid-svg-icons"
 const getTickets = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, {cache:"no-store"});
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store" });
     const tickets = await res.json();
     return tickets;
   } catch (error) {
@@ -13,47 +13,37 @@ const getTickets = async () => {
 }
 
 export default async function Dashboard() {
-  const { allTickets }  = await getTickets();
-  const hardwareProblemTickets = allTickets.reduce((filteredTickets, singleTicket)=>{
-    if(singleTicket.category === "Hardware Problem"){
-      filteredTickets.push(<TicketCard {...singleTicket}/>);
-    }
-    return filteredTickets;
-  }, [])
-  const softwareProblemTickets = allTickets.reduce((filteredTickets, singleTicket)=>{
-    if(singleTicket.category === "Software Problem"){
-      filteredTickets.push(<TicketCard {...singleTicket}/>);
-    }
-    return filteredTickets;
-  }, [])
-  const projectTickets = allTickets.reduce((filteredTickets, singleTicket)=>{
-    if(singleTicket.category === "Project"){
-      filteredTickets.push(<TicketCard {...singleTicket}/>);
-    }
-    return filteredTickets;
-  }, [])
-  if(!allTickets){
+  const { allTickets } = await getTickets();
+
+  const uniqueCategories = [
+    ...new Set(allTickets?.map(({ category }) => category))
+  ]
+  
+  if (!allTickets) {
     return (
       <main className="p-5">
-          <h1>Sorry, it appears our services are down. <FontAwesomeIcon icon={faPoo} /></h1>
-          <br/>
-          <h2>We apologize for the inconvience.</h2>
+        <h1>Sorry, it appears our services are down. <FontAwesomeIcon icon={faPoo} /></h1>
+        <br />
+        <h2>We apologize for the inconvience.</h2>
       </main>
     )
   }
   return (
     <main className="p-5">
-      <section className="lg:grid grid-cols-2 xl:grid-cols-4">
-        {/* Hardware problems */}
-        {hardwareProblemTickets.length > 1 && <h2>Hardware Problems</h2>}
-        {hardwareProblemTickets}
-        {/* Software Problems */}
-        {softwareProblemTickets.length > 1 && <h2>Software Problems</h2>}
-        {softwareProblemTickets}
-        {/* Projects */}
-        {projectTickets.length > 1 && <h2>Projects</h2>}
-        {projectTickets}
-        {/* {allTickets.map((singleTicketData)=> <TicketCard {...singleTicketData}/>)} */}
+      <section>
+        {allTickets && uniqueCategories?.map((uniqueCategory) =>
+          <div key={uniqueCategory} className="mb-4">
+            <h2>{uniqueCategory}</h2>
+            <div className="lg:grid grid-cols-2 xl:grid-cols-4">
+            {allTickets.reduce((filteredTickets, singleTicket) => {
+              if (singleTicket.category === uniqueCategory) {
+                filteredTickets.push(<TicketCard key={uniqueCategory+singleTicket.name} {...singleTicket} />);
+              }
+              return filteredTickets;
+            }, [])}
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );

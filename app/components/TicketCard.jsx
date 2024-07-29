@@ -2,11 +2,11 @@ import DeleteBlock from "./DeleteBlock"
 import PriorityDisplay from "./PriorityDisplay"
 import ProgressDisplay from "./ProgressDisplay"
 import StatusDisplay from "./StatusDisplay"
-const TicketCard = ({title, description, progress, status}) => {
+const TicketCard = ({title, description, progress, priority, status}) => {
   return (
     <article className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
       <header className="flex mb-3">
-        <PriorityDisplay/>
+        <PriorityDisplay priority={priority}/>
         <div className="ml-auto">
             <DeleteBlock/>
         </div>
