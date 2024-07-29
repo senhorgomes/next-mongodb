@@ -14,7 +14,25 @@ const getTickets = async () => {
 
 export default async function Dashboard() {
   const { allTickets }  = await getTickets();
-console.log(allTickets)
+  const hardwareProblemTickets = allTickets.reduce((filteredTickets, singleTicket)=>{
+    if(singleTicket.category === "Hardware Problem"){
+      filteredTickets.push(<TicketCard {...singleTicket}/>);
+    }
+    return filteredTickets;
+  }, [])
+  const softwareProblemTickets = allTickets.reduce((filteredTickets, singleTicket)=>{
+    if(singleTicket.category === "Software Problem"){
+      filteredTickets.push(<TicketCard {...singleTicket}/>);
+    }
+    return filteredTickets;
+  }, [])
+  const projectTickets = allTickets.reduce((filteredTickets, singleTicket)=>{
+    if(singleTicket.category === "Project"){
+      filteredTickets.push(<TicketCard {...singleTicket}/>);
+    }
+    return filteredTickets;
+  }, [])
+
   if(!allTickets){
     return (
       <main className="p-5">
@@ -27,7 +45,11 @@ console.log(allTickets)
   return (
     <main className="p-5">
       <section className="lg:grid grid-cols-2 xl:grid-cols-4">
-        {allTickets.map((singleTicketData)=> <TicketCard {...singleTicketData}/>)}
+        <h2>Hardware Problems</h2>
+        <h2>Software Problems</h2>
+        <h2>Projects</h2>
+        {projectTickets}
+        {/* {allTickets.map((singleTicketData)=> <TicketCard {...singleTicketData}/>)} */}
       </section>
     </main>
   );
