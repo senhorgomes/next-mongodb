@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 // Was removed in Mongoose 4???
 // mongoose.Promise = global.Promise;
 // const readyForFlight = async () => {
@@ -22,5 +22,5 @@ const ticketSchema = Schema(
     }
 )
 // Check if ticket exists in database. If it doesn't create it
-// const Ticket = mongoåose.models.Ticket || mongoose.model("Ticket", ticketSchema);
-// export default Ticket;
+const Ticket = mongoose.models.Ticket || mongoose.model("Ticket", ticketSchema);
+export default Ticket;
