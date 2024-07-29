@@ -24,8 +24,10 @@ const TicketForm = () => {
         console.log(formData)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         // Submit Data
+        e.prevent.defaultValue()
+
     }
     return (
         <div className="flex justify-center">
@@ -41,23 +43,74 @@ const TicketForm = () => {
                     required={true}
                 />
                 <label>Description</label>
-                <input
+                <textarea
                     id="description"
                     name="description"
                     type="text"
                     value={formData.description}
                     onChange={handleChange}
                     required={true}
+                    rows={5}
                 />
                 <label>Category</label>
-                <input
+                <select
                     id="category"
                     name="category"
-                    type="text"
-                    value={formData.category}
                     onChange={handleChange}
                     required={true}
+                >
+                    <option defaultValue="true" value="Hardware Problem">Hardware Problem</option>
+                    <option value="Software Problem">Software Problem</option>
+                    <option value="Project">Project</option>
+                </select>
+                <label>Priority</label>
+                <div>
+                <input
+                    id="priority-1"
+                    name="priority"
+                    onChange={handleChange}
+                    value={1}
+                    checked={formData.priority == 1}
+                    type="radio"
                 />
+                <label>1</label>
+                <input
+                    id="priority-2"
+                    name="priority"
+                    onChange={handleChange}
+                    value={2}
+                    checked={formData.priority == 2}
+                    type="radio"
+                />
+                <label>2</label>
+                <input
+                    id="priority-3"
+                    name="priority"
+                    onChange={handleChange}
+                    value={3}
+                    checked={formData.priority == 3}
+                    type="radio"
+                />
+                <label>3</label>
+                <input
+                    id="priority-4"
+                    name="priority"
+                    onChange={handleChange}
+                    value={4}
+                    checked={formData.priority == 4}
+                    type="radio"
+                />
+                <label>4</label>
+                <input
+                    id="priority-5"
+                    name="priority"
+                    onChange={handleChange}
+                    value={5}
+                    checked={formData.priority == 5}
+                    type="radio"
+                />
+                <label>5</label>
+                </div>
                 <label>Status</label>
                 <select
                     id="status"
@@ -68,7 +121,7 @@ const TicketForm = () => {
                     <option defaultValue="true" value="Pending">Pending</option>
                     <option value="Started">Started</option>
                     <option value="Completed">Completed</option>
-                    </select>
+                </select>
             </form>
 
         </div>
