@@ -2,7 +2,7 @@ import DeleteBlock from "./DeleteBlock"
 import PriorityDisplay from "./PriorityDisplay"
 import ProgressDisplay from "./ProgressDisplay"
 import StatusDisplay from "./StatusDisplay"
-const TicketCard = ({id, title, description, progress, priority, status, createdAt}) => {
+const TicketCard = ({_id, title, description, progress, priority, status, createdAt}) => {
 
   const formatTimestamp = (timestamp) => {
     const options = {
@@ -26,7 +26,7 @@ const TicketCard = ({id, title, description, progress, priority, status, created
       <header className="flex mb-3">
         <PriorityDisplay priority={priority}/>
         <div className="ml-auto">
-            <DeleteBlock/>
+            <DeleteBlock id={_id}/>
         </div>
       </header>
       <h4>{title}</h4>

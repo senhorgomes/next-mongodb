@@ -37,7 +37,7 @@ export default async function Dashboard() {
             <div className="lg:grid grid-cols-2 xl:grid-cols-4">
             {allTickets.reduce((filteredTickets, singleTicket) => {
               if (singleTicket.category === uniqueCategory) {
-                filteredTickets.push(<TicketCard key={uniqueCategory+singleTicket.name} {...singleTicket} />);
+                filteredTickets.push(<TicketCard key={singleTicket._id} {...singleTicket} />);
               }
               return filteredTickets;
             }, [])}

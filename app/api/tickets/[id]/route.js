@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-
+import Ticket from "@/app/models/Ticket";
 export async function DELETE(req , {params}){
     const { id } = params;
+    console.log(id)
     try {
         await Ticket.deleteOne({id});
         return NextResponse.json({message: "Ticket Deleted"}, {status: 201});
