@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import React, { useState } from 'react';
 
-const TicketForm = () => {
+const TicketForm = ({ _id, title, description, progress, priority, status }) => {
 
     const router = useRouter();
 
@@ -16,6 +16,16 @@ const TicketForm = () => {
         progress: 0,
         status: "Pending",
     };
+
+    if(_id && title){
+        baseTicket = {
+            title,
+            description,
+            progress,
+            priority,
+            status
+        }
+    }
 
     const [formData, setFormData] = useState(baseTicket);
 
