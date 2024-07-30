@@ -6,11 +6,16 @@ const TicketCard = ({id, title, description, progress, priority, status, created
 
   const formatTimestamp = (timestamp) => {
     const options = {
-
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true
     };
 
-    const data = new Data(timestamp);
-    const formattedDate = date.toLocaleString("en-US", options);
+    const date = new Date(timestamp);
+    const formattedDate = date.toLocaleString("en-GB", options);
 
     return formattedDate;
   }
@@ -32,7 +37,7 @@ const TicketCard = ({id, title, description, progress, priority, status, created
       </div>
       <div className="flex mt-2">
         <div className="flex flex-col">
-            <p className="text-xs my-1">{createdAt}</p>
+            <p className="text-xs my-1">{formatTimestamp(createdAt)}</p>
             <ProgressDisplay progress={progress}/>
         </div>
         <div className="ml-auto flex items-end">
