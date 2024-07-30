@@ -22,14 +22,3 @@ export async function GET(req){
         return NextResponse.json({message: "Error", error}, {status: 500})
     }
 }
-
-export async function DELETE(req){
-    try {
-        const body = await req.json();
-        const ticketData = body.formData;
-        await Ticket.deleteOne({id: ticketData.id});
-        return NextResponse.json({message: "Ticket Deleted"}, {status: 201});
-    } catch(error) {
-        return NextResponse.json({message: "Error", error}, {status: 500})
-    }
-}
