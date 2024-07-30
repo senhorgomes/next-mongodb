@@ -18,7 +18,7 @@ const ticketSchema = Schema(
         active: Boolean,
     },
     {
-        timeStamps: true,
+        timestamps: true,
     }
 )
 // Check if ticket exists in database. If it doesn't create it
