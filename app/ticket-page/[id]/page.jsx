@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPoo } from "@fortawesome/free-solid-svg-icons"
-
+import TicketForm from "@/app/components/TicketForm";
 const fetchTicketData = async(id) => {
   try{
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets/${id}`, {cache: "no-store"})
@@ -16,8 +16,8 @@ const SingleTicketPage = async ({ params }) => {
 
   const { id } = params;
 
-  const ticketData = await fetchTicketData(id)
-
+  const { ticketData } = await fetchTicketData(id)
+  console.log(ticketData)
   if(!ticketData) {
     return (
       <main className="p-5">

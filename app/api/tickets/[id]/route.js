@@ -12,8 +12,8 @@ export async function DELETE(req , {params}){
 export async function GET(req , {params}){
     const { id } = params;
     try {
-        await Ticket.findById(id);
-        return NextResponse.json({message: "Ticket Deleted"}, {status: 201});
+        const ticketData = await Ticket.findById(id);
+        return NextResponse.json({ ticketData }, {status: 201});
     } catch(error) {
         return NextResponse.json({message: "Error", error}, {status: 500})
     }

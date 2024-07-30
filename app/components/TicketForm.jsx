@@ -4,16 +4,16 @@ import { useRouter } from 'next/navigation';
 
 import React, { useState } from 'react';
 
-const TicketForm = ({ _id, title, description, progress, priority, status }) => {
+const TicketForm = ({ _id, title, description, progress, priority, category, status, EDITMODE }) => {
 
     const router = useRouter();
 
     const baseTicket = {
-        title: _id || "",
-        description: title || "",
-        category: description || "Hardware Problem",
-        priority: progress || 1,
-        progress: priority || 0,
+        title: title || "",
+        description: description || "",
+        category: category || "Hardware Problem",
+        priority: priority || 1,
+        progress: progress || 0,
         status: status || "Pending",
     };
 
@@ -21,7 +21,6 @@ const TicketForm = ({ _id, title, description, progress, priority, status }) => 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target.value)
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
@@ -41,7 +40,7 @@ const TicketForm = ({ _id, title, description, progress, priority, status }) => 
     return (
         <div className="flex justify-center">
             <form className="flex flex-col gap-3 w-1/2" method="POST" onSubmit={handleSubmit}>
-                <h3>Create Your Ticket</h3>
+                <h3>{EDITMODE ? "Update Your Ticket" : "Create Your Ticket"}</h3>
                 <label>Title</label>
                 <input
                     id="title"
@@ -67,8 +66,9 @@ const TicketForm = ({ _id, title, description, progress, priority, status }) => 
                     name="category"
                     onChange={handleChange}
                     required={true}
+                    value={formData.category}
                 >
-                    <option defaultValue="true" value="Hardware Problem">Hardware Problem</option>
+                    <option value="Hardware Problem">Hardware Problem</option>
                     <option value="Software Problem">Software Problem</option>
                     <option value="Project">Project</option>
                 </select>
@@ -126,8 +126,9 @@ const TicketForm = ({ _id, title, description, progress, priority, status }) => 
                     name="status"
                     onChange={handleChange}
                     required={true}
+                    value={formData.status}
                 >
-                    <option defaultValue="true" value="Pending">Pending</option>
+                    <option value="Pending">Pending</option>
                     <option value="Started">Started</option>
                     <option value="Completed">Completed</option>
                 </select>
@@ -141,7 +142,7 @@ const TicketForm = ({ _id, title, description, progress, priority, status }) => 
                     max="100"
                     onChange={handleChange}
                 />
-                <button className="btn">Create Ticket</button>
+                <button className="btn">{EDITMODE ? "Update Ticket" : "Create Ticket"}</button>
             </form>
 
         </div>
