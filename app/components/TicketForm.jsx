@@ -27,7 +27,7 @@ const TicketForm = ({ _id, title, description, progress, priority, category, sta
     const handleSubmit = async (e) => {
         // Submit Data
         e.preventDefault();
-        const url = isEditMode ? `${process.env.NEXT_PUBLIC_API_URL}/api/tickets/${id}` : `${process.env.NEXT_PUBLIC_API_URL}/api/tickets`
+        const url = isEditMode ? `${process.env.NEXT_PUBLIC_API_URL}/api/tickets/${_id}` : `${process.env.NEXT_PUBLIC_API_URL}/api/tickets`
         const method = isEditMode ? "PUT" : "POST"
         const res = await fetch(url, {
             method: method,
@@ -38,7 +38,7 @@ const TicketForm = ({ _id, title, description, progress, priority, category, sta
         }
         )
         if(res.ok){
-            router.push("/");
+            router.replace("/");
         }
     }
     return (
