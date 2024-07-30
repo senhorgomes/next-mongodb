@@ -4,10 +4,10 @@ import { useRouter } from 'next/navigation';
 
 import React, { useState } from 'react';
 
-const TicketForm = ({ _id, title, description, progress, priority, category, status, EDITMODE }) => {
+const TicketForm = ({ _id, title, description, progress, priority, category, status }) => {
 
     const router = useRouter();
-
+    const isEditMode = !!_id;
     const baseTicket = {
         title: title || "",
         description: description || "",
@@ -27,20 +27,24 @@ const TicketForm = ({ _id, title, description, progress, priority, category, sta
     const handleSubmit = async (e) => {
         // Submit Data
         e.preventDefault();
-        const res = await fetch("/api/tickets", {
-            method: "POST",
+        const url = isEditMode ? `${process.env.NEXT_PUBLIC_API_URL}/api/tickets/${id}` : `${process.env.NEXT_PUBLIC_API_URL}/api/tickets`
+        const method = isEditMode ? "PUT" : "POST"
+        const res = await fetch(url, {
+            method: method,
             body: JSON.stringify({formData}),
-            header: {
+            headers: {
                 'Content-Type': 'application/json'
             }
         }
         )
-        router.push("/");
+        if(res.ok){
+            router.push("/");
+        }
     }
     return (
         <div className="flex justify-center">
             <form className="flex flex-col gap-3 w-1/2" method="POST" onSubmit={handleSubmit}>
-                <h3>{EDITMODE ? "Update Your Ticket" : "Create Your Ticket"}</h3>
+                <h3>{isEditMode ? "Update Your Ticket" : "Create Your Ticket"}</h3>
                 <label>Title</label>
                 <input
                     id="title"
@@ -142,7 +146,7 @@ const TicketForm = ({ _id, title, description, progress, priority, category, sta
                     max="100"
                     onChange={handleChange}
                 />
-                <button className="btn">{EDITMODE ? "Update Ticket" : "Create Ticket"}</button>
+                <button className="btn">{isEditMode ? "Update Ticket" : "Create Ticket"}</button>
             </form>
 
         </div>
