@@ -9,23 +9,13 @@ const TicketForm = ({ _id, title, description, progress, priority, status }) => 
     const router = useRouter();
 
     const baseTicket = {
-        title: "",
-        description: "",
-        category: "Hardware Problem",
-        priority: 1,
-        progress: 0,
-        status: "Pending",
+        title: _id || "",
+        description: title || "",
+        category: description || "Hardware Problem",
+        priority: progress || 1,
+        progress: priority || 0,
+        status: status || "Pending",
     };
-
-    if(_id && title){
-        baseTicket = {
-            title,
-            description,
-            progress,
-            priority,
-            status
-        }
-    }
 
     const [formData, setFormData] = useState(baseTicket);
 

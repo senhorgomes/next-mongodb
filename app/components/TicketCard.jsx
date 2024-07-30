@@ -31,7 +31,7 @@ const TicketCard = ({ _id, title, description, progress, priority, status, creat
           <DeleteBlock id={_id} />
         </div>
       </header>
-      <Link href={`/ticket-page/${ticket._id}`} style={{ display: "contents" }}>
+      <Link href={`/ticket-page/${_id}`} style={{ display: "contents" }}>
         <h4>{title}</h4>
         <hr className="h-px border-0 bg-page mb-2" />
         <p className="whitespace-pre-wrap">{description}</p>
