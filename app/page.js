@@ -3,7 +3,7 @@ import TicketCard from "./components/TicketCard";
 import { faPoo } from "@fortawesome/free-solid-svg-icons"
 const getTickets = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store" });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-cache" });
     const tickets = await res.json();
     return tickets;
   } catch (error) {
