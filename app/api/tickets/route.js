@@ -17,7 +17,9 @@ export async function GET(req){
     try {
         const allTickets = await Ticket.find({});
 
-        return NextResponse.json({ allTickets }, {status: 201})
+        return NextResponse.json({ allTickets }, {status: 200, headers: {
+            'Cache-Control': 'no-store'
+        }})
     } catch(error) {
         return NextResponse.json({message: "Error", error}, {status: 500})
     }

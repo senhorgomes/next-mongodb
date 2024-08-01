@@ -1,20 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TicketCard from "./components/TicketCard";
-import { faPoo } from "@fortawesome/free-solid-svg-icons"
+import { faPoo } from "@fortawesome/free-solid-svg-icons";
 const getTickets = async () => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store" });
-    const tickets = await res.json();
-    return tickets;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store", });
+    return res.json();
   } catch (error) {
     console.log(error)
-    return null;
+    return {};
   }
 }
 
 export default async function Dashboard() {
   const { allTickets } = await getTickets();
-
+  
   const uniqueCategories = [
     ...new Set(allTickets?.map(({ category }) => category))
   ]
