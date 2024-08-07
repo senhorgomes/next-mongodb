@@ -39,7 +39,7 @@ const TicketForm = ({ _id, title, description, progress, priority, category, sta
         )
         if(res.ok){
             router.replace("/");
-            router.refresh()
+            router.refresh();
         }
     }
     return (
