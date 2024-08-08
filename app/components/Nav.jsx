@@ -1,3 +1,5 @@
+"use client";
+
 import { faHome, faTicket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useUser } from '@auth0/nextjs-auth0/client';
@@ -18,13 +20,19 @@ const Nav = () => {
                 </Link>
             </div>
             {/* login */}
-            <div>
-                <p className="text-default-text">fake@email.com </p>
-            </div>
+
             {!user &&
-                <Link href="#">
+                <Link href="/api/auth/login">
                     <button className="btn">Login</button>
                 </Link>
+            }
+            {user &&
+                <div className="flex justify-between items-center">
+                    <p className="text-default-text">{user.name}</p>
+                    <Link href="/api/auth/logout">
+                        <button className="btn">Logout</button>
+                    </Link>
+                </div>
             }
         </nav>
     )
