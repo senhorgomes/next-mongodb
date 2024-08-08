@@ -8,6 +8,7 @@ import Link from "next/link"
 const Nav = () => {
 
     const { user, isLoading } = useUser();
+    console.log(user)
     return (
         <nav className="flex justify-between bg-nav p-4">
             {/* icons */}
