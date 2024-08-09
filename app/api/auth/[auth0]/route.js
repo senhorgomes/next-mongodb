@@ -1,3 +1,31 @@
-import { handleAuth } from '@auth0/nextjs-auth0';
+import { handleAuth, handleCallback } from '@auth0/nextjs-auth0';
+import User from '@/app/models/User';
 
-export const GET = handleAuth();
+const afterCallback = async (req, res, session) => {
+  const { user } = session;
+
+  // Check if user exists in database
+  let existingUser = await User.findOne({ id: user.sub });
+
+  if (!existingUser) {
+    // If user does not exist, create a new user
+    existingUser = new User({
+        id: user.sub,
+      name: user.name,
+      email: user.email,
+    });
+    await existingUser.save();
+  }
+
+  // Return the session
+  return session;
+};
+export const GET = handleAuth({
+    async callback(req, res) {
+      try {
+        await handleCallback(req, res, { afterCallback, redirectUri: "http://localhost:3000" });
+      } catch (error) {
+        console.log(error.status || 500);
+      }
+    },
+  });
