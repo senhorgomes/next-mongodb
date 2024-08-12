@@ -20,12 +20,4 @@ const afterCallback = async (req, res, session) => {
   // Return the session
   return session;
 };
-export const GET = handleAuth({
-    async callback(req, res) {
-      try {
-        await handleCallback(req, res, { afterCallback, redirectUri: "http://localhost:3000" });
-      } catch (error) {
-        console.log(error.status || 500);
-      }
-    },
-  });
+export const GET = handleAuth({});
