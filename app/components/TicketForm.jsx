@@ -1,11 +1,11 @@
 "use client"
 
 import { useRouter, redirect } from 'next/navigation';
-
+import { useUser } from '@auth0/nextjs-auth0/client';
 import React, { useState } from 'react';
 
 const TicketForm = ({ _id, title, description, progress, priority, category, status }) => {
-
+    const { user, isLoading } = useUser();
     const router = useRouter();
     const isEditMode = !!_id;
     const baseTicket = {
@@ -15,6 +15,7 @@ const TicketForm = ({ _id, title, description, progress, priority, category, sta
         priority: priority || 1,
         progress: progress || 0,
         status: status || "Pending",
+        user_id: user.sub
     };
 
     const [formData, setFormData] = useState(baseTicket);

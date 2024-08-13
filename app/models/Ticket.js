@@ -9,6 +9,7 @@ mongoose.connect(process.env.MONGODB_URI);
 // readyForFlight().catch((err)=>console.log(err));
 const ticketSchema = Schema(
     {
+        user_id: String,
         title: String,
         description: String,
         category: String,
