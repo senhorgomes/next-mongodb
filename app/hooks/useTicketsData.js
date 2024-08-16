@@ -20,7 +20,21 @@ const useTicketsData = () => {
         }
     }, [user]);
 
-    return {user, isLoading, allTickets};
+    const deleteTicket = async () => {
+        try {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets/${id}`, {method: "DELETE"});
+    
+          if(res.ok){
+            router.refresh();
+          } else {
+            console.error("Failed to delete the ticket");
+          }
+        } catch (error) {
+          console.error("An error occured while deleting the ticket:", error);
+        }
+      }
+
+    return {user, isLoading, allTickets, deleteTicket};
 }
 
 export default useTicketsData;
