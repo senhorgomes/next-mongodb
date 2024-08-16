@@ -17,7 +17,6 @@ const SingleTicketPage = async ({ params }) => {
   const { id } = params;
 
   const { ticketData } = await fetchTicketData(id)
-  console.log(ticketData)
   if(!ticketData) {
     return (
       <main className="p-5">

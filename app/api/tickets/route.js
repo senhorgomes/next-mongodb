@@ -13,13 +13,15 @@ export async function POST(req){
         return NextResponse.json({message: "Error", error}, {status: 500})
     }
 }
-export const GET = withApiAuthRequired(async function myApiRoute(req) {
+export const GET = withApiAuthRequired(async function tickets(req) {
     try {
-        const session = await getSession(req);
-        console.log(session)
-        if(session){
-            console.log("User session", user)
-        }
+        // const session = await getSession(req);
+        // console.log("LINE 19", session)
+        // // Get user id
+        // if(session){
+        //     console.log("User session", session.user)
+        // }
+        // Find all tickets that belong to the user id
         const allTickets = await Ticket.find({});
 
         return NextResponse.json({ allTickets }, {status: 200, headers: {

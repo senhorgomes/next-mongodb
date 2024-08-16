@@ -1,24 +1,50 @@
+"use client"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TicketCard from "./components/TicketCard";
 import { faPoo } from "@fortawesome/free-solid-svg-icons";
-const getTickets = async () => {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store", credentials: "include" });
-    return res.json();
-  } catch (error) {
-    console.log(error)
-    return {};
-  }
-}
+import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { useEffect, useState } from "react";
+import { useUser } from '@auth0/nextjs-auth0/client';
+// Check if user is logged in before making the ticket call
+// Utilize isLoading
+// Until that is done, then populate user/rest of the information
 
-export default async function Dashboard() {
-  const { allTickets } = await getTickets();
-  
+
+// export default withPageAuthRequired(
+export default function Dashboard() {
+  const [allTickets, setAllTickets] = useState([]);
+  const { user, isLoading } = useUser();
+  useEffect(()=> {
+    const getTickets = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store"});
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store", credentials: "include" });
+        const ticketData = await res.json();
+        setAllTickets(ticketData.allTickets);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    if(user && !isLoading){
+      getTickets()
+    }
+  }, [user])
+
+  // const session = await getSession();
+  // console.log("Dashboard Session:", session)
   const uniqueCategories = [
     ...new Set(allTickets?.map(({ category }) => category))
   ]
   
-  if (!allTickets) {
+  if(isLoading){
+    return (
+      <main className="p-5">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
+  if (!user) {
     return (
       <main className="p-5">
         <h1>Sorry, it appears our services are down. <FontAwesomeIcon icon={faPoo} /></h1>
@@ -27,23 +53,33 @@ export default async function Dashboard() {
       </main>
     )
   }
+  
   return (
-    <main className="p-5">
-      <section>
-        {allTickets && uniqueCategories?.map((uniqueCategory) =>
-          <div key={uniqueCategory} className="mb-4">
-            <h2>{uniqueCategory}</h2>
-            <div className="lg:grid grid-cols-2 xl:grid-cols-4">
-            {allTickets.reduce((filteredTickets, singleTicket) => {
-              if (singleTicket.category === uniqueCategory) {
-                filteredTickets.push(<TicketCard key={singleTicket._id} {...singleTicket} />);
-              }
-              return filteredTickets;
-            }, [])}
+    <>
+    {user &&
+      (
+        <main className="p-5">
+        <section>
+          {allTickets && uniqueCategories?.map((uniqueCategory) =>
+            <div key={uniqueCategory} className="mb-4">
+              <h2>{uniqueCategory}</h2>
+              <div className="lg:grid grid-cols-2 xl:grid-cols-4">
+              {allTickets.reduce((filteredTickets, singleTicket) => {
+                if (singleTicket.category === uniqueCategory) {
+                  filteredTickets.push(<TicketCard key={singleTicket._id} {...singleTicket} />);
+                }
+                return filteredTickets;
+              }, [])}
+              </div>
             </div>
-          </div>
-        )}
-      </section>
-    </main>
+          )}
+        </section>
+      </main>
+      )
+    }
+   </>
   );
 }
+// { returnTo: '/' }
+// )
+
