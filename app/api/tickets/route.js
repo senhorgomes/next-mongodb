@@ -15,14 +15,14 @@ export async function POST(req){
 }
 export const GET = withApiAuthRequired(async function tickets(req) {
     try {
-        // const session = await getSession(req);
-        // console.log("LINE 19", session)
-        // // Get user id
-        // if(session){
-        //     console.log("User session", session.user)
-        // }
+        const session = await getSession(req);
+        console.log("LINE 19", session)
+        // Get user id
+        if(session){
+            console.log("User session", session.user)
+        }
         // Find all tickets that belong to the user id
-        const allTickets = await Ticket.find({});
+        const allTickets = await Ticket.find({user_id: session.user.sub});
 
         return NextResponse.json({ allTickets }, {status: 200, headers: {
             'Cache-Control': 'no-store'
