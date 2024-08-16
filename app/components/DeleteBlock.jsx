@@ -4,7 +4,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const DeleteBlock = ({ id }) => {
+const DeleteBlock = ({ id, onDelete }) => {
 
   const router = useRouter();
 
@@ -23,7 +23,7 @@ const DeleteBlock = ({ id }) => {
   }
 
   return (
-    <FontAwesomeIcon icon={faX} className="text-red-400 hover:cursor-pointer hover:text-red" onClick={deleteTicket}/>
+    <FontAwesomeIcon icon={faX} className="text-red-400 hover:cursor-pointer hover:text-red" onClick={onDelete}/>
   )
 }
 
