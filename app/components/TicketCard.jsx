@@ -4,7 +4,7 @@ import ProgressDisplay from "./ProgressDisplay";
 import StatusDisplay from "./StatusDisplay";
 import Link from "next/link";
 
-const TicketCard = ({ _id, title, description, progress, priority, status, createdAt }) => {
+const TicketCard = ({ _id, title, description, progress, priority, status, createdAt, deleteTicket }) => {
 
   const formatTimestamp = (timestamp) => {
     const options = {
@@ -28,7 +28,7 @@ const TicketCard = ({ _id, title, description, progress, priority, status, creat
       <header className="flex mb-3">
         <PriorityDisplay priority={priority} />
         <div className="ml-auto">
-          <DeleteBlock id={_id} />
+          <DeleteBlock onDelete={() => deleteTicket(_id)}/>
         </div>
       </header>
       <Link href={`/ticket-page/${_id}`} style={{ display: "contents" }}>

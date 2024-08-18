@@ -30,7 +30,7 @@ export default function Dashboard() {
   //     getTickets()
   //   }
   // }, [user])
-  const {user, isLoading, allTickets } = useTicketsData();
+  const {user, isLoading, allTickets, deleteTicket } = useTicketsData();
 
   const uniqueCategories = [
     ...new Set(allTickets?.map(({ category }) => category))
@@ -65,7 +65,7 @@ export default function Dashboard() {
               <div className="lg:grid grid-cols-2 xl:grid-cols-4">
               {allTickets.reduce((filteredTickets, singleTicket) => {
                 if (singleTicket.category === uniqueCategory) {
-                  filteredTickets.push(<TicketCard key={singleTicket._id} {...singleTicket} />);
+                  filteredTickets.push(<TicketCard key={singleTicket._id} {...singleTicket} deleteTicket={deleteTicket} />);
                 }
                 return filteredTickets;
               }, [])}
