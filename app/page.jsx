@@ -10,26 +10,8 @@ import useTicketsData from "./hooks/useTicketsData";
 // Utilize isLoading
 // Until that is done, then populate user/rest of the information
 
-
-// export default withPageAuthRequired(
 export default function Dashboard() {
-  // const [allTickets, setAllTickets] = useState([]);
-  // const { user, isLoading } = useUser();
-  // useEffect(()=> {
-  //   const getTickets = async () => {
-  //     try {
-  //       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store"});
-  //       // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store", credentials: "include" });
-  //       const ticketData = await res.json();
-  //       setAllTickets(ticketData.allTickets);
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   if(user && !isLoading){
-  //     getTickets()
-  //   }
-  // }, [user])
+
   const {user, isLoading, allTickets, deleteTicket } = useTicketsData();
 
   const uniqueCategories = [
@@ -79,6 +61,3 @@ export default function Dashboard() {
    </>
   );
 }
-// { returnTo: '/' }
-// )
-
