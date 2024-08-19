@@ -24,6 +24,8 @@ const TeamPage = () => {
         </table>
         <form>
         {/* Form to invite new team member */}
+        <input/>
+        <button>Submit</button>
         </form>
       </div>
     )
