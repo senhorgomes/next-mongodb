@@ -1,6 +1,25 @@
 import TicketForm from "@/app/components/TicketForm"
 
-const TeamPage = () => {
+const TeamPage = async () => {
+    const handlePasswordReset = await fetch(
+        `https://${process.env.AUTH0_ISSUER_BASE_URL}/dbconnections/change_password`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            client_id: process.env.AUTH0_CLIENT_ID,
+            email: 'bryanpgomes@gmail.com',
+            connection: 'Username-Password-Authentication',
+          }),
+        })
+        if(!handlePasswordReset.ok){
+            console.log("SOMETHING DONE BROKE!");
+        } else {
+            console.log("It worked!")
+        }
+
     return (
       <div>
         {/* Table of team members */}
@@ -25,8 +44,8 @@ const TeamPage = () => {
         <form>
         {/* Form to invite new team member */}
         <input/>
-        <button>Submit</button>
         </form>
+        <button onClick={()=> handlePasswordReset()}>Submit</button>
       </div>
     )
   }
