@@ -10,7 +10,7 @@ const TeamPage = async () => {
           },
           body: JSON.stringify({
             client_id: process.env.AUTH0_CLIENT_ID,
-            email: 'bryanpgomes@gmail.com',
+            email: process.env.TEST_EMAIL,
             connection: 'Username-Password-Authentication',
           }),
         })
