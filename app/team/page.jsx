@@ -1,24 +1,30 @@
-import TicketForm from "@/app/components/TicketForm"
-
-const TeamPage = async () => {
-    const handlePasswordReset = await fetch(
-        `https://${process.env.AUTH0_ISSUER_BASE_URL}/dbconnections/change_password`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            client_id: process.env.AUTH0_CLIENT_ID,
-            email: process.env.TEST_EMAIL,
-            connection: 'Username-Password-Authentication',
-          }),
-        })
-        if(!handlePasswordReset.ok){
-            console.log("SOMETHING DONE BROKE!");
-        } else {
-            console.log("It worked!")
+"use client"
+const TeamPage = () => {
+    const handlePasswordReset = () => {
+        console.log("line 4", process.env.NEXT_PUBLIC_TEST_EMAIL)
+        try{
+            fetch(
+                `${process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL}/dbconnections/change_password`,
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    client_id: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
+                    email: process.env.NEXT_PUBLIC_TEST_EMAIL,
+                    connection: 'Username-Password-Authentication',
+                  }),
+                })
+                if(!handlePasswordReset.ok){
+                    console.log("SOMETHING DONE BROKE!");
+                } else {
+                    console.log("It worked!")
+                }
+        } catch(error){
+            console.log("error", error)
         }
+    } 
 
     return (
       <div>
