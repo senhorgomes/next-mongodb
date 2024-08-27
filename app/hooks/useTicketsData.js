@@ -8,7 +8,6 @@ const useTicketsData = () => {
     const getTickets = async () => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store" });
-        // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, { cache: "no-store", credentials: "include" });
         const ticketData = await res.json();
         setAllTickets(ticketData.allTickets);
       } catch (error) {

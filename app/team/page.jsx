@@ -44,7 +44,7 @@ const TeamPage = () => {
   }
 
   return (
-    <div>
+    <section className="p-5">
       {/* Table of team members */}
       <table class="table-auto w-full border-collapse bg-card shadow-md rounded-lg overflow-hidden">
         <thead>
@@ -57,7 +57,7 @@ const TeamPage = () => {
         </thead>
         <tbody>
           {dummyInfo.map((employee, index)=> 
-          <tr class={`${index % 2 === 0 ? 'bg-slate-400' : 'bg-slate-500'} hover:bg-gray-100 transition-colors duration-200`}>
+          <tr class={`${index % 2 === 0 ? 'bg-slate-400' : 'bg-slate-500'} hover:bg-slate-700 transition-colors duration-200`}>
             <td scope="row" class="px-4 py-2 text-sm">{employee.first_name}</td>
             <td scope="row" class="px-4 py-2 text-sm">{employee.last_name}</td>
             <td scope="row" class="px-4 py-2 text-sm">{employee.email}</td>
@@ -71,7 +71,7 @@ const TeamPage = () => {
         <input />
       </form>
       <button onClick={() => handlePasswordReset()}>Submit</button>
-    </div>
+    </section>
   )
 }
 
