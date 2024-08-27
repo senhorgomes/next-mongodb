@@ -1,4 +1,24 @@
 "use client"
+
+const dummyInfo = [{
+  id: 1,
+  first_name: "Jacquenette",
+  last_name: "Chieco",
+  email: "jchieco0@kickstarter.com",
+  role: "HR"
+}, {
+  id: 2,
+  first_name: "Tremaine",
+  last_name: "Redwin",
+  email: "tredwin1@ebay.com",
+  role: "Software Engineer"
+}, {
+  id: 3,
+  first_name: "Lynnelle",
+  last_name: "Sircomb",
+  email: "lsircomb2@digg.com",
+  role: "Software Engineer"
+}]
 const TeamPage = () => {
   const handlePasswordReset = () => {
     fetch(
@@ -33,9 +53,12 @@ const TeamPage = () => {
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
             <th scope="col">Employee</th>
+            <th scope="col">Role</th>
+            
           </tr>
         </thead>
         <tbody>
+          {}
           <tr>
             <th scopr="row"></th>
             <td></td>
