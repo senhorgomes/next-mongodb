@@ -46,25 +46,24 @@ const TeamPage = () => {
   return (
     <div>
       {/* Table of team members */}
-      <table>
+      <table class="table-auto w-full border-collapse bg-card shadow-md rounded-lg overflow-hidden">
         <thead>
           <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Employee</th>
-            <th scope="col">Role</th>
-            
+            <th scope="col" class="px-4 py-2 text-left text-sm font-semibold">First Name</th>
+            <th scope="col" class="px-4 py-2 text-left text-sm font-semibold">Last Name</th>
+            <th scope="col" class="px-4 py-2 text-left text-sm font-semibold">Email</th>
+            <th scope="col" class="px-4 py-2 text-left text-sm font-semibold">Role</th>
           </tr>
         </thead>
         <tbody>
-          {}
-          <tr>
-            <th scopr="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
+          {dummyInfo.map((employee, index)=> 
+          <tr class={`${index % 2 === 0 ? 'bg-slate-400' : 'bg-slate-500'} hover:bg-gray-100 transition-colors duration-200`}>
+            <td scope="row" class="px-4 py-2 text-sm">{employee.first_name}</td>
+            <td scope="row" class="px-4 py-2 text-sm">{employee.last_name}</td>
+            <td scope="row" class="px-4 py-2 text-sm">{employee.email}</td>
+            <td scope="row" class="px-4 py-2 text-sm">{employee.role}</td>
           </tr>
+          )}
         </tbody>
       </table>
       <form>
