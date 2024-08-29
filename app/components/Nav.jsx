@@ -15,12 +15,16 @@ const Nav = () => {
                 <Link href="/">
                     <FontAwesomeIcon icon={faHome} className="icon" />
                 </Link>
+                {user &&
+                <>
                 <Link href="/ticket-page/new">
                     <FontAwesomeIcon icon={faTicket} className="icon" />
                 </Link>
                 <Link href="/team">
                     <FontAwesomeIcon icon={faPeopleGroup} className="icon" />
                 </Link>
+                </>
+            }
             </div>
             {/* login */}
 
