@@ -16,22 +16,27 @@ const Nav = () => {
                     <FontAwesomeIcon icon={faHome} className="icon" />
                 </Link>
                 {user &&
-                <>
-                <Link href="/ticket-page/new">
-                    <FontAwesomeIcon icon={faTicket} className="icon" />
-                </Link>
-                <Link href="/team">
-                    <FontAwesomeIcon icon={faPeopleGroup} className="icon" />
-                </Link>
-                </>
-            }
+                    <>
+                        <Link href="/ticket-page/new">
+                            <FontAwesomeIcon icon={faTicket} className="icon" />
+                        </Link>
+                        <Link href="/team">
+                            <FontAwesomeIcon icon={faPeopleGroup} className="icon" />
+                        </Link>
+                    </>
+                }
             </div>
             {/* login */}
 
             {!user &&
-                <Link href="/api/auth/login">
-                    <button className="btn">Login</button>
-                </Link>
+                <>
+                    <Link href="/api/auth/login">
+                        <button className="btn">Login</button>
+                    </Link>
+                    {/* <Link href="/api/auth/login">
+                        <button className="btn">Sign Up</button>
+                    </Link> */}
+                </>
             }
             {user &&
                 <div className="flex justify-between items-center">

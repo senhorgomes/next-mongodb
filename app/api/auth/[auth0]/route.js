@@ -23,6 +23,4 @@ const afterCallback = async (req, res, session) => {
   }
   return session;
 };
-export const GET = handleAuth({ callback: handleCallback({
-  afterCallback,
-}),});
+export const GET = handleAuth();
