@@ -16,10 +16,6 @@ export async function POST(req){
 export const GET = withApiAuthRequired(async function tickets(req) {
     try {
         const session = await getSession(req);
-        // Get user id
-        if(session){
-            // console.log("User session", session.user)
-        }
         // Find all tickets that belong to the user id
         const allTickets = await Ticket.find({user_id: session.user.sub});
 
@@ -30,19 +26,3 @@ export const GET = withApiAuthRequired(async function tickets(req) {
         return NextResponse.json({message: "Error", error}, {status: 500})
     }
 })
-// export async function GET (req){
-//     try {
-//         const session = await getSession(req);
-//         console.log(session)
-//         if(session){
-//             console.log("User session", user)
-//         }
-//         const allTickets = await Ticket.find({});
-
-//         return NextResponse.json({ allTickets }, {status: 200, headers: {
-//             'Cache-Control': 'no-store'
-//         }})
-//     } catch(error) {
-//         return NextResponse.json({message: "Error", error}, {status: 500})
-//     }
-// }

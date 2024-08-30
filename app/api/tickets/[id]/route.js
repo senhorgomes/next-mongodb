@@ -23,7 +23,6 @@ export async function PUT(req , {params}){
     try {
         const body = await req.json();
         const updatedTicketData = body.formData;
-        console.log("Line 26, tickets id",updatedTicketData)
         await Ticket.findByIdAndUpdate(id, { ...updatedTicketData });
         return NextResponse.json({message: "Ticket Created"}, {status: 201})
     } catch(error) {

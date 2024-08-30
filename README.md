@@ -58,3 +58,17 @@ const ticketSchema = Schema(
     }
 )
 ```
+
+## API information
+
+```markdown
+tickets
+├── GET - Retrieves all tickets
+├── POST - Create new ticket
+├── [id]
+│   ├── GET - Isn't used - retrieve single Ticket
+│   ├── PUT - Update Ticket
+│   └── DELETE - Delete Ticket
+auth
+├── [auth0] - Please refer to [NextJS Auth0](https://github.com/auth0/nextjs-auth0?tab=readme-ov-file#configure-the-application)
+```
